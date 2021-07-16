@@ -1,2 +1,4 @@
-# Bomb-Squad
+Game name: Bomb Squad
+Game Engine: Unity
+
  

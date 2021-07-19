@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BombController : MonoBehaviour
 {
-    public float timeout = 3.0f;
+    public float timeout = 6.0f;
     float timer;
     Animator animator;
 
@@ -19,9 +19,13 @@ public class BombController : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        if (timer < 0)
+        if ((timer < 1.0f) && (timer > 0.0f))
         {
             animator.SetTrigger("Explode");
+        } 
+        else if (timer < 0.0f)
+        {
+            Destroy(gameObject);
         }
     }
 }

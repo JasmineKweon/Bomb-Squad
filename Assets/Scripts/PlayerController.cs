@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     Vector2 lookDirection = new Vector2(0, -1);
     Vector2 move;
 
+    public GameObject bombPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,15 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Look X", lookDirection.x);
         animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            DropBomb("Player1");
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            DropBomb("Player2");
+        }
     }
 
     void FixedUpdate()
@@ -52,5 +63,10 @@ public class PlayerController : MonoBehaviour
         position = position + speed * move * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
+    }
+
+    void DropBomb(string name)
+    {
+        GameObject bombObject = Instantiate(bombPrefab, GameObject.Find(name).transform.position, Quaternion.identity);
     }
 }

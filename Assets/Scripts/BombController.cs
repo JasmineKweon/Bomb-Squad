@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BombController : MonoBehaviour
 {
-    public float timeout = 6.0f;
-    float timer;
+    public float timeout = 4.0f;
     Animator animator;
+    public GameObject explosionPrefab;
+    float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -17,15 +18,16 @@ public class BombController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        timer -= Time.deltaTime;
-        if ((timer < 1.0f) && (timer > 0.0f))
+    {   
+        timer -= Time.deltaTime; 
+        if (timer < 0.0f)
         {
-            animator.SetTrigger("Explode");
-        } 
-        else if (timer < 0.0f)
-        {
-            Destroy(gameObject);
+            Instantiate(explosionPrefab, gameObject.transform.position + Vector3.left, Quaternion.identity);
+            Instantiate(explosionPrefab, gameObject.transform.position + Vector3.right, Quaternion.identity);
+            Instantiate(explosionPrefab, gameObject.transform.position + Vector3.up, Quaternion.identity);
+            Instantiate(explosionPrefab, gameObject.transform.position + Vector3.down, Quaternion.identity);
+            Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
+            Destroy (gameObject); 
         }
     }
 }

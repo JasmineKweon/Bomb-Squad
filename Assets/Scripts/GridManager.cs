@@ -13,13 +13,24 @@ public class GridManager : MonoBehaviour
     float x_Position;
     float y_Position;
 
+    float column;
+    float row;
+
     // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < columnLength * rowLength; i++)
         {
-            x_Position = x_Start + (x_Space * (i % columnLength));
-            y_Position = y_Start + (y_Space * (i / columnLength)); 
+            column = i % columnLength;
+            row = i / columnLength;
+
+            if (((column==1)&&(row==0))||((column==0)&&(row==1))||((column==columnLength-2)&&(row==0))||((column==columnLength-1)&&(row==1)))
+            {
+                continue;
+            }
+
+            x_Position = x_Start + (x_Space * column);
+            y_Position = y_Start + (y_Space * row); 
 
             Vector2 position = new Vector3(x_Position, y_Position, 0);
         

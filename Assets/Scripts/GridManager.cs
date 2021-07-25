@@ -21,7 +21,7 @@ public class GridManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    /*
+        
         for (int i = 0; i < columnLength * rowLength; i++)
         {
             column = i % columnLength;
@@ -44,7 +44,8 @@ public class GridManager : MonoBehaviour
             //{
                 //Instantiate(boxPrefab, new Vector3(x_Position, y_Position), Quaternion.identity);            
             //}
-        }*/
+        }
+        
     }
     // Update is called once per frame
     void Update()

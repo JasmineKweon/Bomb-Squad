@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f591690bcccb4f408ee301259f52e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 3
   bombPrefab: {fileID: 3718224125058411180, guid: 8e4482209af456e4fafddba7ff0bc3d1, type: 3}
 --- !u!50 &363901615259390119
 Rigidbody2D:
@@ -137,7 +137,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0.099999994, y: 0.02, z: 0.099999994, w: 0.08}
-    pivot: {x: 0.51, y: 0.02}
+    pivot: {x: 0.5, y: 0.3}
     oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5

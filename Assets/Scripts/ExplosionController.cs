@@ -26,5 +26,9 @@ public class ExplosionController : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        if (other.gameObject.name.StartsWith("Player"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

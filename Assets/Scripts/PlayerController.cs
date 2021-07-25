@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 2.0f;
+    public float speed = 3.0f;
     float horizontal;
     float vertical;
     //Rigidbody2D rigidbody2d;
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (gameObject.name == "Player1")
         {
             horizontal = Input.GetAxis("Player1-Horizontal");
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
             horizontal = Input.GetAxis("Player2-Horizontal");
             vertical = Input.GetAxis("Player2-Vertical");
         }
+        
 
         //Animation
         move = new Vector2(horizontal, vertical);
@@ -74,34 +76,52 @@ public class PlayerController : MonoBehaviour
         */
 
         boxCollider.enabled = false;
-        RaycastHit2D hitup = Physics2D.Raycast(transform.position, Vector2.up, 1.0f);
-        RaycastHit2D hitdown = Physics2D.Raycast(transform.position, Vector2.down, 1.0f);
-        RaycastHit2D hitright = Physics2D.Raycast(transform.position, Vector2.right, 1.0f);
-        RaycastHit2D hitleft = Physics2D.Raycast(transform.position, Vector2.left, 1.0f);
+        RaycastHit2D hitup = Physics2D.Raycast(transform.position, Vector2.up, 0.4f);
+        RaycastHit2D hitdown = Physics2D.Raycast(transform.position, Vector2.down, 0.4f);
+        RaycastHit2D hitright = Physics2D.Raycast(transform.position, Vector2.right, 0.4f);
+        RaycastHit2D hitleft = Physics2D.Raycast(transform.position, Vector2.left, 0.4f);
         boxCollider.enabled = true;
-
+        
         if (horizontal < 0 && transform.position == pos && hitleft.collider == null) 
         {        // Left
-            pos += Vector3.left;
+            pos += new Vector3(-0.1f,0,0);
         }
         if (horizontal > 0 && transform.position == pos && hitright.collider == null) 
         {        // Right
-            pos += Vector3.right;
+            pos += new Vector3(0.1f,0,0);
         }
         if (vertical > 0 && transform.position == pos && hitup.collider == null) 
         {        // Up
-            pos += Vector3.up;
+            pos += new Vector3(0,0.1f,0);
         }
         if (vertical < 0 && transform.position == pos && hitdown.collider == null) 
         {        // Down
-            pos += Vector3.down;
+            pos += new Vector3(0,-0.1f,0);
         }
-
+        
+        /*
+        if (Input.GetKeyDown(KeyCode.H) && transform.position == pos && hitleft.collider == null)
+        {
+            pos +=Vector3.left;
+        }
+        if (Input.GetKeyDown(KeyCode.K) && transform.position == pos && hitright.collider == null)
+        {
+            pos +=Vector3.right;
+        }
+        if (Input.GetKeyDown(KeyCode.U) && transform.position == pos && hitup.collider == null)
+        {
+            pos +=Vector3.up;
+        }
+        if (Input.GetKeyDown(KeyCode.J) && transform.position == pos && hitdown.collider == null)
+        {
+            pos +=Vector3.down;
+        }
+        */
         transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);    // Move there
     }
 
     void DropBomb()
     {
-        Instantiate(bombPrefab, pos - new Vector3(0,0.5f) , Quaternion.identity);        
+        Instantiate(bombPrefab, new Vector3(Mathf.Floor(pos.x) + 0.45f, Mathf.Round(pos.y + 0.5f) - 1) , Quaternion.identity);        
     }
 }

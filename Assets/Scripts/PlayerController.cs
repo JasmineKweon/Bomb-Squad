@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //rigidbody2d = GetComponent<Rigidbody2D>();
-        boxCollider =GetComponent<BoxCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         pos = transform.position;
     }
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (gameObject.name == "Player1")
         {
             horizontal = Input.GetAxis("Player1-Horizontal");
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
             horizontal = Input.GetAxis("Player2-Horizontal");
             vertical = Input.GetAxis("Player2-Vertical");
         }
-        
+
 
         //Animation
         move = new Vector2(horizontal, vertical);
@@ -81,24 +81,26 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hitright = Physics2D.Raycast(transform.position, Vector2.right, 0.4f);
         RaycastHit2D hitleft = Physics2D.Raycast(transform.position, Vector2.left, 0.4f);
         boxCollider.enabled = true;
-        
-        if (horizontal < 0 && transform.position == pos && hitleft.collider == null) 
+
+
+
+        if (horizontal < 0 && transform.position == pos && (hitleft.collider == null || hitleft.collider.gameObject.name.StartsWith("bomb_ground")))
         {        // Left
-            pos += new Vector3(-0.1f,0,0);
+            pos += new Vector3(-0.1f, 0, 0);
         }
-        if (horizontal > 0 && transform.position == pos && hitright.collider == null) 
+        if (horizontal > 0 && transform.position == pos && (hitright.collider == null || hitright.collider.gameObject.name.StartsWith("bomb_ground")))
         {        // Right
-            pos += new Vector3(0.1f,0,0);
+            pos += new Vector3(0.1f, 0, 0);
         }
-        if (vertical > 0 && transform.position == pos && hitup.collider == null) 
+        if (vertical > 0 && transform.position == pos && (hitup.collider == null || hitup.collider.gameObject.name.StartsWith("bomb_ground")))
         {        // Up
-            pos += new Vector3(0,0.1f,0);
+            pos += new Vector3(0, 0.1f, 0);
         }
-        if (vertical < 0 && transform.position == pos && hitdown.collider == null) 
+        if (vertical < 0 && transform.position == pos && (hitdown.collider == null || hitdown.collider.gameObject.name.StartsWith("bomb_ground")))
         {        // Down
-            pos += new Vector3(0,-0.1f,0);
+            pos += new Vector3(0, -0.1f, 0);
         }
-        
+
         /*
         if (Input.GetKeyDown(KeyCode.H) && transform.position == pos && hitleft.collider == null)
         {
@@ -122,6 +124,6 @@ public class PlayerController : MonoBehaviour
 
     void DropBomb()
     {
-        Instantiate(bombPrefab, new Vector3(Mathf.Floor(pos.x) + 0.45f, Mathf.Round(pos.y + 0.5f) - 1) , Quaternion.identity);        
+        Instantiate(bombPrefab, new Vector3(Mathf.Floor(pos.x) + 0.45f, Mathf.Round(pos.y + 0.5f) - 1), Quaternion.identity);
     }
 }

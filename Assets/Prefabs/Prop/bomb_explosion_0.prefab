@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26e0308e8dbab84fb07df48f708453b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionTimer: 0.5
+  coinPrefab: {fileID: 1457949696723509591, guid: 84b1a6123b2131144863db73255741e2, type: 3}
 --- !u!61 &-2028595384694856443
 BoxCollider2D:
   m_ObjectHideFlags: 0

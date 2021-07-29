@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79fd9dba0d4535a4485756d333297c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeout: 4
+  timeout: 3
   explosionPrefab: {fileID: 1834327677529816789, guid: 8d67af4f82504fc4caa52f1c22021559, type: 3}
 --- !u!61 &8825626413098277787
 BoxCollider2D:

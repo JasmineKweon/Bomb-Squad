@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BombController : MonoBehaviour
 {
-    public float timeout = 4.0f;
+    public float timeout = 3.0f;
     Animator animator;
     public GameObject explosionPrefab;
     float timer;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 3.0f;
+    public float speed = 10.0f;
     float horizontal;
     float vertical;
     //Rigidbody2D rigidbody2d;
@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     Vector2 move;
 
     Vector3 pos;
+
+    int coinNum;
 
     public GameObject bombPrefab;
 
@@ -84,21 +86,21 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (horizontal < 0 && transform.position == pos && (hitleft.collider == null || hitleft.collider.gameObject.name.StartsWith("bomb_ground")))
+        if (horizontal < 0 && transform.position == pos && (hitleft.collider == null || hitleft.collider.gameObject.name.StartsWith("bomb_ground") || hitleft.collider.gameObject.name.StartsWith("coin")))
         {        // Left
-            pos += new Vector3(-0.1f, 0, 0);
+            pos += new Vector3(-0.05f, 0, 0);
         }
-        if (horizontal > 0 && transform.position == pos && (hitright.collider == null || hitright.collider.gameObject.name.StartsWith("bomb_ground")))
+        if (horizontal > 0 && transform.position == pos && (hitright.collider == null || hitright.collider.gameObject.name.StartsWith("bomb_ground")|| hitright.collider.gameObject.name.StartsWith("coin")))
         {        // Right
-            pos += new Vector3(0.1f, 0, 0);
+            pos += new Vector3(0.05f, 0, 0);
         }
-        if (vertical > 0 && transform.position == pos && (hitup.collider == null || hitup.collider.gameObject.name.StartsWith("bomb_ground")))
+        if (vertical > 0 && transform.position == pos && (hitup.collider == null || hitup.collider.gameObject.name.StartsWith("bomb_ground")|| hitup.collider.gameObject.name.StartsWith("coin")))
         {        // Up
-            pos += new Vector3(0, 0.1f, 0);
+            pos += new Vector3(0, 0.05f, 0);
         }
-        if (vertical < 0 && transform.position == pos && (hitdown.collider == null || hitdown.collider.gameObject.name.StartsWith("bomb_ground")))
+        if (vertical < 0 && transform.position == pos && (hitdown.collider == null || hitdown.collider.gameObject.name.StartsWith("bomb_ground")|| hitdown.collider.gameObject.name.StartsWith("coin")))
         {        // Down
-            pos += new Vector3(0, -0.1f, 0);
+            pos += new Vector3(0, -0.05f, 0);
         }
 
         /*
@@ -125,5 +127,11 @@ public class PlayerController : MonoBehaviour
     void DropBomb()
     {
         Instantiate(bombPrefab, new Vector3(Mathf.Floor(pos.x) + 0.45f, Mathf.Round(pos.y + 0.5f) - 1), Quaternion.identity);
+    }
+
+    public void addCoin()
+    {
+        coinNum++;
+        Debug.Log(gameObject.name + ": " + coinNum);
     }
 }

@@ -12,12 +12,11 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     Vector2 lookDirection = new Vector2(0, -1);
     Vector2 move;
-
     Vector3 pos;
-
     int coinNum;
-
     public GameObject bombPrefab;
+    public NumberRenderer theScore;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +25,8 @@ public class PlayerController : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         pos = transform.position;
+        coinNum = 0;
+        //theScore.RenderNumber(0);
     }
 
     // Update is called once per frame
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
         {
             DropBomb();
         }
+        theScore.RenderNumber(coinNum);
     }
 
     void FixedUpdate()
@@ -90,15 +92,15 @@ public class PlayerController : MonoBehaviour
         {        // Left
             pos += new Vector3(-0.05f, 0, 0);
         }
-        if (horizontal > 0 && transform.position == pos && (hitright.collider == null || hitright.collider.gameObject.name.StartsWith("bomb_ground")|| hitright.collider.gameObject.name.StartsWith("coin")))
+        if (horizontal > 0 && transform.position == pos && (hitright.collider == null || hitright.collider.gameObject.name.StartsWith("bomb_ground") || hitright.collider.gameObject.name.StartsWith("coin")))
         {        // Right
             pos += new Vector3(0.05f, 0, 0);
         }
-        if (vertical > 0 && transform.position == pos && (hitup.collider == null || hitup.collider.gameObject.name.StartsWith("bomb_ground")|| hitup.collider.gameObject.name.StartsWith("coin")))
+        if (vertical > 0 && transform.position == pos && (hitup.collider == null || hitup.collider.gameObject.name.StartsWith("bomb_ground") || hitup.collider.gameObject.name.StartsWith("coin")))
         {        // Up
             pos += new Vector3(0, 0.05f, 0);
         }
-        if (vertical < 0 && transform.position == pos && (hitdown.collider == null || hitdown.collider.gameObject.name.StartsWith("bomb_ground")|| hitdown.collider.gameObject.name.StartsWith("coin")))
+        if (vertical < 0 && transform.position == pos && (hitdown.collider == null || hitdown.collider.gameObject.name.StartsWith("bomb_ground") || hitdown.collider.gameObject.name.StartsWith("coin")))
         {        // Down
             pos += new Vector3(0, -0.05f, 0);
         }
@@ -132,6 +134,6 @@ public class PlayerController : MonoBehaviour
     public void addCoin()
     {
         coinNum++;
-        Debug.Log(gameObject.name + ": " + coinNum);
+        //Debug.Log(gameObject.name + ": " + coinNum);
     }
 }

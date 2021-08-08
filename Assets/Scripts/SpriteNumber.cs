@@ -1,25 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SpriteNumber : MonoBehaviour {
 
 
 	
 	public Sprite[] numbers;
+	/*
 	[UnityEngine.HideInInspector]
 	public SpriteRenderer render;
+	*/
 
 	// Use this for initialization
 	void Awake ()
 	{
 		//used so that we can use the Bounds function
-		render = this.GetComponent<SpriteRenderer> ();
-		render.sprite = numbers [0]; //temporarily set the number to 0
+		this.gameObject.GetComponent<Image> ().sprite = numbers[0];
 	}
 
 
-	public void SetNumber( int number)
+	public void SetNumber(int number)
 	{
-		this.gameObject.GetComponent<SpriteRenderer> ().sprite = numbers [number];
+		this.gameObject.GetComponent<Image>().sprite = numbers [number];
 	}
 }

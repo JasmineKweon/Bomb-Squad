@@ -38,12 +38,6 @@ public class GridManager : MonoBehaviour
 
                 Instantiate(boxPrefab, new Vector3(x_Position, y_Position), Quaternion.identity);
             }
-
-            
-            //if (Physics2D.Raycast(position, Vector2.up, 0.5f) != true)
-            //{
-                //Instantiate(boxPrefab, new Vector3(x_Position, y_Position), Quaternion.identity);            
-            //}
         }
         
     }

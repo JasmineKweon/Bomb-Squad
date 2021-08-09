@@ -14,7 +14,6 @@ public class NumberRenderer : MonoBehaviour
 
     public void RenderNumber(int aNum)
     {
-        Debug.Log("aNum" + aNum);
         //Get Lengths
         int length = aNum.ToString().Length;
         char[] strNum = aNum.ToString().ToCharArray();
@@ -37,7 +36,6 @@ public class NumberRenderer : MonoBehaviour
         {
             if (length > score.Count)
             {
-                Debug.Log("length:" + length + "score.Count:" + score.Count);
                 GameObject NewObj = new GameObject();
                 NewObj.AddComponent<Image>();
                 NewObj.GetComponent<Image>().sprite = numbers[0];

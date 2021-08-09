@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         pos = transform.position;
         coinNum = 0;
-        //theScore.RenderNumber(0);
     }
 
     // Update is called once per frame
@@ -35,13 +34,13 @@ public class PlayerController : MonoBehaviour
 
         if (gameObject.name == "Player1")
         {
-            horizontal = Input.GetAxis("Player1-Horizontal");
-            vertical = Input.GetAxis("Player1-Vertical");
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
         }
         else if (gameObject.name == "Player2")
         {
-            horizontal = Input.GetAxis("Player2-Horizontal");
-            vertical = Input.GetAxis("Player2-Vertical");
+            horizontal = Input.GetAxis("Horizontal2");
+            vertical = Input.GetAxis("Vertical2");
         }
 
 
@@ -80,10 +79,10 @@ public class PlayerController : MonoBehaviour
         */
 
         boxCollider.enabled = false;
-        RaycastHit2D hitup = Physics2D.Raycast(transform.position, Vector2.up, 0.4f);
-        RaycastHit2D hitdown = Physics2D.Raycast(transform.position, Vector2.down, 0.4f);
-        RaycastHit2D hitright = Physics2D.Raycast(transform.position, Vector2.right, 0.4f);
-        RaycastHit2D hitleft = Physics2D.Raycast(transform.position, Vector2.left, 0.4f);
+        RaycastHit2D hitup = Physics2D.Raycast(transform.position, Vector2.up, 0.5f);
+        RaycastHit2D hitdown = Physics2D.Raycast(transform.position, Vector2.down, 0.5f);
+        RaycastHit2D hitright = Physics2D.Raycast(transform.position, Vector2.right, 0.5f);
+        RaycastHit2D hitleft = Physics2D.Raycast(transform.position, Vector2.left, 0.5f);
         boxCollider.enabled = true;
 
 
@@ -104,25 +103,6 @@ public class PlayerController : MonoBehaviour
         {        // Down
             pos += new Vector3(0, -0.05f, 0);
         }
-
-        /*
-        if (Input.GetKeyDown(KeyCode.H) && transform.position == pos && hitleft.collider == null)
-        {
-            pos +=Vector3.left;
-        }
-        if (Input.GetKeyDown(KeyCode.K) && transform.position == pos && hitright.collider == null)
-        {
-            pos +=Vector3.right;
-        }
-        if (Input.GetKeyDown(KeyCode.U) && transform.position == pos && hitup.collider == null)
-        {
-            pos +=Vector3.up;
-        }
-        if (Input.GetKeyDown(KeyCode.J) && transform.position == pos && hitdown.collider == null)
-        {
-            pos +=Vector3.down;
-        }
-        */
         transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);    // Move there
     }
 
@@ -134,6 +114,5 @@ public class PlayerController : MonoBehaviour
     public void addCoin()
     {
         coinNum++;
-        //Debug.Log(gameObject.name + ": " + coinNum);
     }
 }

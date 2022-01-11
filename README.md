@@ -1,3 +1,3 @@
-Game name: Bomb Squad
+Game Project: Bomb Squad
 
  
